@@ -631,8 +631,7 @@ impl SourceMapCache {
                 if let Ok(mut file) = File::open(&path) {
                     let mut bytes = Vec::new();
                     if file.read_to_end(&mut bytes).is_ok() {
-                        if let Ok(cache_entry) = bincode::deserialize::<SourceMapCacheEntry>(&bytes)
-                        {
+                        if let Ok(cache_entry) = bincode::deserialize::<SourceMapCacheEntry>(&bytes) {
                             let file_size = fs::metadata(&path).map(|m| m.len()).unwrap_or(0);
 
                             entries.push(CachedEntryInfo {
@@ -795,7 +794,7 @@ mod tests {
         mappings.insert(
             0x1234,
             SourceLocation {
-                file: "test.rs".to_string(),
+                file: "test.rs".into(),
                 line: 42,
                 column: Some(10),
                 column_end: None,
@@ -893,7 +892,7 @@ mod tests {
         mappings.insert(
             0x1234,
             SourceLocation {
-                file: "test.rs".to_string(),
+                file: "test.rs".into(),
                 line: 42,
                 column: Some(10),
                 column_end: None,
@@ -954,7 +953,7 @@ mod tests {
         mappings1.insert(
             0x1234,
             SourceLocation {
-                file: "test1.rs".to_string(),
+                file: "test1.rs".into(),
                 line: 1,
                 column: Some(1),
                 column_end: None,
@@ -983,7 +982,7 @@ mod tests {
             mappings2.insert(
                 i,
                 SourceLocation {
-                    file: "test2.rs".to_string(),
+                    file: "test2.rs".into(),
                     line: i as u32,
                     column: Some(i as u32),
                     column_end: None,
@@ -1028,7 +1027,7 @@ mod tests {
                 mappings.insert(
                     j,
                     SourceLocation {
-                        file: format!("test{}.rs", i),
+                        file: format!("test{}.rs", i).into(),
                         line: j as u32,
                         column: Some(j as u32),
                         column_end: None,
@@ -1134,7 +1133,7 @@ mod tests {
             mappings.insert(
                 0,
                 SourceLocation {
-                    file: "test.rs".to_string(),
+                    file: "test.rs".into(),
                     line: 1,
                     column: Some(1),
                     column_end: None,
