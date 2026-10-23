@@ -499,7 +499,7 @@ impl<A> TrackingAllocator<A> {
     /// Accounts for `bytes` about to be allocated, or refuses them.
     fn reserve(&self, bytes: usize) -> bool {
         let order = Ordering::Relaxed;
-        let claimed = self.live.try_update(order, order, |live| {
+        let claimed = self.live.fetch_update(order, order, |live| {
             let next = live.saturating_add(bytes);
             if next > self.limit {
                 None
