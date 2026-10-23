@@ -631,7 +631,8 @@ impl SourceMapCache {
                 if let Ok(mut file) = File::open(&path) {
                     let mut bytes = Vec::new();
                     if file.read_to_end(&mut bytes).is_ok() {
-                        if let Ok(cache_entry) = bincode::deserialize::<SourceMapCacheEntry>(&bytes) {
+                        if let Ok(cache_entry) = bincode::deserialize::<SourceMapCacheEntry>(&bytes)
+                        {
                             let file_size = fs::metadata(&path).map(|m| m.len()).unwrap_or(0);
 
                             entries.push(CachedEntryInfo {

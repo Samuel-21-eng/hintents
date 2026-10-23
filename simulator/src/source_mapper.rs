@@ -328,8 +328,7 @@ impl SourceMapper {
 
         // Add GitHub link if available
         if let Some(ref git_repo) = self.git_repo {
-            location.github_link = git_repo
-                .generate_file_link(&location.file, location.line);
+            location.github_link = git_repo.generate_file_link(&location.file, location.line);
         }
 
         Some(location)
