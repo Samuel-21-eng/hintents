@@ -5,7 +5,6 @@ package rpc
 
 import (
 	"encoding/base64"
-	"time"
 
 	"github.com/dotandev/hintents/internal/errors"
 	"github.com/dotandev/hintents/internal/state"
@@ -20,6 +19,10 @@ type LedgerEntryPair struct {
 }
 
 // LedgerHeaderResponse is an alias for state.LedgerHeaderResponse
+// LedgerHeaderResponse contains essential ledger header information
+// needed for transaction replay simulation. This structure provides
+// all the metadata required to recreate the blockchain state at the
+// time a transaction was executed.
 type LedgerHeaderResponse = state.LedgerHeaderResponse
 
 // FromHorizonLedger converts a Horizon ledger response to our internal structure.
