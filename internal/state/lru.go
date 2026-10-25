@@ -5,7 +5,27 @@ package state
 
 import (
 	"sync"
+	"time"
 )
+
+// LedgerHeaderResponse contains essential ledger header information
+// needed for transaction replay simulation.
+type LedgerHeaderResponse struct {
+	Sequence          uint32
+	Hash              string
+	PrevHash          string
+	CloseTime         time.Time
+	ProtocolVersion   uint32
+	BaseFee           int32
+	BaseReserve       int32
+	MaxTxSetSize      int32
+	TotalCoins        string
+	FeePool           string
+	HeaderXDR         string
+	SuccessfulTxCount int32
+	FailedTxCount     int32
+	OperationCount    int32
+}
 
 const (
 	// DefaultMaxLedgerHeaders is the maximum number of historical ledger header entries
