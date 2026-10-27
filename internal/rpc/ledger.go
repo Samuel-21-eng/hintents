@@ -8,6 +8,7 @@ import (
 
 	"github.com/dotandev/hintents/internal/errors"
 	"github.com/dotandev/hintents/internal/types"
+	"github.com/dotandev/hintents/internal/state"
 	hProtocol "github.com/stellar/go-stellar-sdk/protocols/horizon"
 	"github.com/stellar/go-stellar-sdk/xdr"
 )
@@ -22,7 +23,12 @@ type LedgerEntryPair struct {
 // for transaction replay simulation. The type lives in internal/types so that
 // packages such as internal/state can use it without importing this package
 // (which would create an import cycle through the cache layer).
-type LedgerHeaderResponse = types.LedgerHeaderResponse
+
+// LedgerHeaderResponse contains essential ledger header information
+// needed for transaction replay simulation. This structure provides
+// all the metadata required to recreate the blockchain state at the
+// time a transaction was executed.
+type LedgerHeaderResponse = state.LedgerHeaderResponse
 
 // FromHorizonLedger converts a Horizon ledger response to our internal structure.
 // This provides a clean abstraction layer between the Horizon API and our

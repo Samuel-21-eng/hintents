@@ -497,6 +497,7 @@ impl<A> TrackingAllocator<A> {
     }
 
     /// Accounts for `bytes` about to be allocated, or refuses them.
+    #[allow(deprecated)]
     fn reserve(&self, bytes: usize) -> bool {
         let order = Ordering::Relaxed;
         // A compare-exchange loop instead of `fetch_update`, which newer
