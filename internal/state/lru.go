@@ -5,6 +5,8 @@ package state
 
 import (
 	"sync"
+
+	"github.com/dotandev/hintents/internal/types"
 	"time"
 )
 
